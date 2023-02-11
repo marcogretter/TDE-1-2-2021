@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define N 100
+
+void f(char txt[]);
+char maxcons(char txt[],int inizio, int fine);
+
+int main(){
+	char txt1[N] = "preferisco programmare in c che in lisp";
+    char txt2[N] = "ho comprato due zucche";
+	f(txt1);
+	printf("\n\n");
+	f(txt2);
+}
+void f(char txt[]){
+	char s[N];
+	int i,j,cont=0;
+	
+	
+	for(i=0;i<strlen(txt);i++){
+		if(txt[i]==' '){//spazio
+			if(cont==0){
+				s[cont]=maxcons(txt,0,i-1);
+				j=i+1;
+				cont++;
+			}
+			else{
+				s[cont]=maxcons(txt,j,i-1);
+				j=i+1;
+				cont++;
+			}
+		}
+		if(i==(strlen(txt)-1)){//caso finale NON C'è SPAZIO!!
+					s[cont]=maxcons(txt,j,i);
+					cont++;//non cambio j, finito
+				}
+	}
+	s[cont]=='\0';
+	printf("%s",s);
+	return;
+	
+}
+char maxcons(char txt[],int inizio, int fine){
+	char ris=' ';//spazio è prima di tutte
+	int i=inizio;
+//	printf("\ntest  ");
+//	for(i=inizio;i<=fine;i++)
+//		printf("%c",txt[i]);
+	while(i!=fine+1){
+		if(txt[i] > ris)//uguaglianza ASCII
+			if(txt[i]!='a' && txt[i]!='e' && txt[i]!='i' && txt[i]!='o' && txt[i]!='u')
+				ris=txt[i];
+		i++;
+	}
+	return ris;
+}
