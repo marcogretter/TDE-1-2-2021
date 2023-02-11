@@ -1,0 +1,8 @@
+ Scrivere la query SQL che estrae, per ogni corso, il numero totale di edizioni avviate dopo il 1/1/2020
+
+ SELECT I.Codice,count(*) As TotaleEdizioni
+ FROM Iscrizione I
+ WHERE I.DataInizioCorso>='1/1/2020'
+ GROUP BY I.Codice_Corso
+ 
+ Scrivere la query SQL che, per ciascun anno, trova i sommelier che hanno partecipato a meno di 2 corsi.
